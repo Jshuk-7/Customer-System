@@ -3,17 +3,24 @@ mod customer;
 use customer::*;
 
 fn main() {
-    let cus = Customer{
-        name: String::from("Jack"),
-        phone_number: String::from("248-298-2367"),
-        last_order: Order{
-            due_date: String::from("12/22/22"),
-            customer: String::from("Jack"),
-            total: 25,
-            pieces: 10,
-        }
-    };
+    let mut cus = Customer::default();
+    cus.set_name("Jack");
 
-    println!("{:#?}", cus);
-    println!("{:#?}", cus.get_last_order());
+    let mut order = Order::new(
+        "Jack",
+        25,
+        10,
+        "12/22/22"
+    );
+
+    let order2 = Order::new(
+        "Jack",
+        25,
+        10,
+        "12/22/22"
+    );
+
+    cus.set_last_order(order2);
+    order.void_order();
+    println!("{:#?}", order);
 }
